@@ -1,1 +1,33 @@
-dsasa
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Automate DataEntry</title>
+</head>
+<body>
+    <div class="container">
+        <form autocomplete="off" action="method" name="google-sheet">
+            <h1>Enter Data</h1>
+            <input type="text" placeholder="PART DISCRIPTION/SERIAL NO" name="PART DISCRIPTION/SERIAL NO" class="inp" required>
+            <input type="text" placeholder="IPG PART NO" name="IPG PART NO" class="inp" required>
+            <input type="text" placeholder="SUPPLIER PART NO" name="SUPPLIER PART NO" class="inp" required>
+            <input type="text" placeholder="CURRENT STOCK" name="CURRENT STOCK" class="inp" required>
+            <input type="submit" name="submit"  class="inp" id="btn">
+            <input type="reset" name="reset" class="inp" id="btn">
+        </form>
+    </div>
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwHSq87aEuS2GbOJSqbY8fejBh7EbnvzuYMCYsRJe635_lIqD8Co47CijL22VXB319Nbg/exec'
+        const form = document.forms['google-sheet']
+      
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => alert("Data Successfully Entered!!"))
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
+</body>
+</html>
